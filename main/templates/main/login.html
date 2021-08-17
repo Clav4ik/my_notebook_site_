@@ -1,0 +1,20 @@
+{%extends 'main/base.html'%}
+
+{% block title %}Вход{%endblock%}
+{% block forregister %}
+
+<form id="trueregister" action="" method="post">
+    {% csrf_token %}
+    <div class="form-error">{{ form.non_field_errors }}</div>
+
+    {% for ff in form %}
+    <p><label class="form-label" for="{{ ff.id_for_label }}">{{ff.label}}: </label>{{ ff }}</p>
+    <div class="form-error">{{ ff.errors }}</div>
+    {% endfor %}
+        <button type="submit">Войти</button>
+
+
+</form>
+
+
+{%endblock%}

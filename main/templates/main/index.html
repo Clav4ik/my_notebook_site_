@@ -1,0 +1,45 @@
+{%extends 'main/base.html'%}
+
+{% block title %}
+{{title}}
+{%endblock%}
+
+{% block content %}
+    <h1 style="text-align: center" >Таски</h1>
+    {% if page_obj %}
+        {% for el in page_obj %}
+            <a href="{% url 'edit' el.pk %}">
+            <div class="alert alert-warning mt-2" >
+                <h3>{{ el.title }}<div style="position:absolute; top:0; right:0; font-size: 0.65em;;">Дата: {{el.time_update|date:"d-m-Y H:i:s"}}</div></h3>
+                <p>{{ el.task }}</p></div>
+
+            </a>
+            <div id="deleteA"><a href="{% url 'delete' el.pk %}">Удалить</a></div>
+
+
+        {% endfor %}
+    {% else %}
+        <p>У Вас нет записей! </p>
+    {% endif %}
+
+{% endblock %}
+{% block forregister %}
+
+{% if page_obj.has_other_pages %}
+    <nav class="list-pages" >
+        <ul >
+            {% for p in page_obj.paginator.page_range %}
+                {% if page_obj.number == p %}
+                    <li class="page-num page-num-selected">{{ p }}</li>
+                {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+                    <li class="page-num">
+
+                        <a  href="?page={{ p }}">{{ p }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+    </nav>
+{% endif %}
+{%endblock%}

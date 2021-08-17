@@ -1,0 +1,89 @@
+{% load static %}
+{% load cache %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{%endblock%}</title>
+    {% block aadd %}{%endblock%}
+
+    <link rel="shortcut icon" type="image/ico" href="{% static "pythonWEB/miniIcon/noteicon.ico" %}">
+    <link rel="stylesheet" href="{% static 'pythonWEB/css/style.css'%}" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+    <script src="{% static 'pythonWEB/js/base.js' %}"></script>
+
+</head>
+<body>
+
+<header id="header" class="d-flex justify-content-center py-3">
+    <ul class="nav nav-pills">
+        {% cache 60 sidebar_top %}
+      <li class="nav-item"><a id="firstword"href="{% url 'home' %}" class="nav-link "><b>Главная</b></a></li>
+      <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">Про нас</a></li>
+        {% endcache %}
+
+            {% if request.user.is_authenticated %}
+
+            <li class="nav-item"><a href="{% url 'create' %}" class="nav-link">Создать таск</a></li>
+
+
+             <li class="nav-item"><a href="#" class="nav-link active">{{user.username}}</a></li>
+             <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link"> | Выйти</a></li>
+
+            {% else %}
+
+            <li class="nav-item"><a href="{% url 'trueregister' %}" class="nav-link">Зарегаться</a></li>
+            <li class="nav-item"><a href="{% url 'login' %}" class="nav-link">Войти</a></li>
+            {% endif %}
+
+
+    </ul>
+</header>
+    <div id="sidebar">
+        <div class="toggle-btn" onclick="openmenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul>
+            {% cache 60 sidebar_left %}
+            <li>Меню сайта</li>
+            <li><a href="{% url 'home' %}"><i class="fas fa-home"></i>Главная</a></li>
+            <li><a href="{% url 'about' %}"><i class="fas fa-laugh-wink"></i>Про нас</a></li>
+            {% endcache %}
+            {% if request.user.is_authenticated %}
+            <li><a href="{% url 'create' %}"><i class="fas fa-clipboard"></i>Создать таск</a></li>
+
+            <li>{{user.username}}<a href="{% url 'logout' %}"> | Выйти</a></li>
+            {% else %}
+
+            <li><a href="{% url 'trueregister' %}">Зарегаться</a></li>
+            <li><a href="{% url 'login' %}">Войти</a></li>
+            {% endif %}
+
+        </ul>
+
+    </div>
+
+    <div  class="container">
+        {% block content %}{%endblock%}
+    </div>
+
+
+    {% block forregister %}{%endblock%}
+
+    <script scr="/static/debug_toolbar/js/toolbar.js" async></script>
+    <script>
+        function openmenu(){
+        document.getElementById("sidebar").classList.toggle('active');
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,193 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+
+}
+body{
+    background:url('background/Note.jpg') ;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+
+}
+
+#sidebar{
+    position: fixed;
+    width: 250px;
+    z-index: 3;
+
+    background: #57626F;
+    border-right: 4px solid #E0E5EA;
+    left: -260px;
+
+    -moz-transition: all 600ms;
+    -webkit-transition: all 600ms;
+    transition: all 600ms;
+    padding-bottom: 10px;
+}
+
+#sidebar.active{
+    left: 20px;
+}
+
+#sidebar ul li:first-child{
+    text-align: center;
+    color: white;
+    font-size: 1.95em;
+    list-style: none;
+    padding: 25px 10px 10px 10px;
+}
+#sidebar ul li a {
+    color: #dfe5eb;
+    text-decoration: none;
+}
+
+#sidebar ul li a:hover {
+    color: #59e9df;
+}
+#sidebar ul li:not(first-child){
+    width: 90%;
+    margin-left: 10%;
+    font-size: 1.1em;
+    list-style: none;
+    padding: 15px 10px;
+}
+#sidebar .toggle-btn {
+    position: absolute;
+    left: 270px;
+    top: 20px;
+    background: #E0E5EA;
+    padding: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+
+}
+#sidebar .toggle-btn:hover{background: #556270}
+#sidebar .toggle-btn:hover span {background: #fafafa}
+
+#sidebar .toggle-btn span{
+    display: block;
+    width: 25px;
+    height: 4px;
+    background: #1E303E;
+    color: #233A42;
+    margin: 4px 0;
+
+}
+
+header ul li a{
+
+    color:#2D33A3;
+    font: 20px Arial, sans-serif;
+}
+
+header ul li a:hover{
+    color:#FFFFFF;
+    background:#007BFF;
+
+}
+header ul li a{
+
+    color:#2D33A3;
+    font: 20px Arial, sans-serif;
+}
+
+
+header ul li #firstword{
+
+    border-width:1px;
+    border-style:inset;
+    border-opacity:0.5;
+}
+
+header ul li #firstword:hover{
+
+    color:#FFFFFF;
+    background:#007BFF;
+    border-style:none;
+}
+
+
+#trueregister  {
+width: 300px;
+font-size: 16px;
+margin-left:5%;
+}
+
+#trueregister p .form-label {
+display: block;
+min-width: 150px;
+vertical-align: top;
+}
+
+#trueregister .form-error ul {
+list-style: none;
+display: inline-block;
+padding: 0;
+color: #CC0000;
+background color:black;
+}
+
+#trueregister .form-button {
+min-width: 200px;
+font-size: 16px;
+}
+
+#deleteA{
+display: block;
+text-align: right;
+margin-bottom: 20px;
+
+}
+
+#deleteA a{
+    background: red;
+    color: yellow;
+    padding:10px;
+    opacity:0.7;
+    border-radius: 10px;
+}
+
+
+
+
+.list-pages {
+	text-align: center;
+	margin: 0 0 20px 0;
+}
+.list-pages ul {
+	margin: 20px 0 0 0;
+	padding: 0;
+	list-style: none;
+}
+.list-pages ul li {
+	display: inline-block;
+	margin: 0 20px 0 0;
+}
+.list-pages a {
+	color: #000;
+	font-size: 24px;
+	text-decoration: none;
+
+}
+.list-pages .page-num, .page-num-selected {
+	display: inline-block;
+	width: 60px;
+	height: 44px;
+	padding: 2px 0 0 0;
+	border: 3px solid #d0d0d0;
+	border-radius: 30px;
+}
+.list-pages .page-num:hover {
+	box-shadow: 3px 3px 1px #d0d0d0;
+}
+.list-pages .page-num-selected {
+	border: none;
+	color: #000;
+	font-size: 20px;
+}
+.list-pages .page-num-selected:hover {
+	box-shadow: none;
+}
