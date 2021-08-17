@@ -15,12 +15,12 @@ from .forms import RegisterUserForm
 from .forms import LoginUserForm
 
 
-def about(request):
+def about_us(request):
 
     return render(request, "main/about.html")
 
 
-def create(request):
+def create_task(request):
     error = ''
     if request.method == 'POST':
         form = TaskForm(request.POST)
@@ -41,7 +41,7 @@ def create(request):
     return render(request, "main/create.html", context)
 
 
-class MainView(TemplateView):
+class AllTaskAuthUser(TemplateView):
     template_name = 'main/index.html'
 
     def get(self, request):
@@ -63,10 +63,10 @@ class MainView(TemplateView):
         return render(request, 'main/index.html', {'title': 'Главная страница сайта','form': form})
 
 
-class RegisterFormView(CreateView):
+class RegisterFormViewUser(CreateView):
     form_class = RegisterUserForm
     success_url = "login"
-    template_name = 'main/trueregister.html'
+    template_name = 'main/register.html'
 
 
     def form_valid(self, form):
@@ -79,7 +79,7 @@ class RegisterFormView(CreateView):
         # authenticate user then login
         user = authenticate(username=username, password=password)
         LoginUserForm(self.request, user)
-        return super(RegisterFormView, self).form_valid(form)
+        return super(RegisterFormViewUser, self).form_valid(form)
 
     class Meta:
         model = User
@@ -110,7 +110,7 @@ def delete_task(request, task_id):
     return redirect('home')
 
 
-def edit(request, task_id):
+def edit_task(request, task_id):
     post_to_edit = get_object_or_404(Task, pk=task_id, created_by=request.user)
 
     try:

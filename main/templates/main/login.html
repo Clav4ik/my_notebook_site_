@@ -1,9 +1,18 @@
 {%extends 'main/base.html'%}
+{% load static %}
+
 
 {% block title %}Вход{%endblock%}
+
+{% block aadd %}
+
+<link rel="stylesheet" href="{% static 'pythonWEB/css/register_and_login.css'%}" type="text/css">
+
+{%endblock%}
+
 {% block forregister %}
 
-<form id="trueregister" action="" method="post">
+<form id="register_and_login" action="" method="post">
     {% csrf_token %}
     <div class="form-error">{{ form.non_field_errors }}</div>
 

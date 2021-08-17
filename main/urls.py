@@ -8,14 +8,14 @@ from django.views.decorators.cache import cache_page
 
 urlpatterns = [
 
-    path('', MainView.as_view(), name='home'),
-    path('about', cache_page(60)(about), name='about'),
-    path('create', cache_page(60)(create), name='create'),
-    path('trueregister', cache_page(60)(RegisterFormView.as_view()), name='trueregister'),
+    path('', AllTaskAuthUser.as_view(), name='home'),
+    path('about', about_us, name='about'),
+    path('create', cache_page(60)(create_task), name='create'),
+    path('register', cache_page(60)(RegisterFormViewUser.as_view()), name='register'),
     path('login', cache_page(60)(LoginUser.as_view()), name='login'),
     path('logout', logout_user, name='logout'),
     path('delete/<task_id>', delete_task, name='delete'),
-    path('edit/<int:task_id>', edit, name='edit'),
+    path('edit/<int:task_id>', edit_task, name='edit'),
     path('api/', include('main.api.urls'))
 
 
